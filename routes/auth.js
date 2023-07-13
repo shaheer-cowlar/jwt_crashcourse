@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { users } = require("../db")
 const { check,validationResult } = require("express-validator")
 const bcrypt = require("bcrypt")
+const JWT = require("jsonwebtoken")
 
 //get all users
 router.get('/getall',(req,res)=>{
@@ -50,7 +51,19 @@ async (req, res) => {
     email,
     password:hashedPassword
   })
-  res.send("Validation passed");
+
+  const token = await JWT.sign({
+     email
+  },
+  "fghjghjhgjhgjgjgjgjgjgjg",
+  {
+    expiresIn:9999999999
+  }
+  ) 
+
+  res.json({
+    token
+  });
   console.log(hashedPassword);
   
 });
