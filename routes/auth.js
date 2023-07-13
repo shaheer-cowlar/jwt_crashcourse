@@ -9,6 +9,50 @@ router.get('/getall',(req,res)=>{
     res.send(users)
 })
 
+//login
+router.post('/login',async(req,res)=>{
+    const {password,email} = req.body;
+    let user = users.find((user)=>{
+        return user.email === email
+    });
+    if(!user){
+        return res.status(400).json({
+            "errors":[
+                {
+                    "msg":"Invalid Credentials"
+                }
+            ]
+        })
+    }
+ 
+ let isMatched= await   bcrypt.compare(password,user.password)
+  if(!isMatched){
+    return res.status(400).json({
+        "errors":[
+            {
+                "msg":"Invalid Credentials"
+            }
+        ]
+    })
+  }
+
+  const token = await JWT.sign({
+         email
+     },
+        "fghjghjhgjhgjgjgjgjgjgjg",
+       {
+         expiresIn:9999999999
+       }
+    )  
+
+    res.json({
+           token
+    });
+ 
+    
+
+})
+
 router.post('/signup',
 [
   check("email","Please provide a valid email").isEmail(),
