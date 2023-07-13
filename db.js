@@ -9,7 +9,39 @@ const users = [
   },  
 ];
 
+const publicPosts = [
+{
+    title:"XYZ POST",
+    content:"here you goo..."
+},
+{
+    title:"XYZ POST",
+    content:"here you goo..."
+},
+{
+    title:"XYZ POST",
+    content:"here you goo..."
+},
+];
+
+const privatePosts = [
+{
+    title:"abc posts",
+    content:"here you not go "
+},
+{
+    title:"abc posts",
+    content:"here you not go "
+},
+{
+    title:"abc posts",
+    content:"here you not go "
+},
+];
+
 
 module.exports = {
-    users
+    users,
+    privatePosts,
+    publicPosts
 };
