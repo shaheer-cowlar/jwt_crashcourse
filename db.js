@@ -40,8 +40,29 @@ const privatePosts = [
 ];
 
 
+const weather = [
+    { 
+        city:"Karachi",
+        temperature:"30",
+        humidity:"10"
+    },
+    { 
+        city:"Islamabad",
+        temperature:"20",
+        humidity:"20"
+    },
+    { 
+        city:"Lahore",
+        temperature:"40",
+        humidity:"15"
+    },
+    ];
+
+
+
 module.exports = {
     users,
     privatePosts,
-    publicPosts
+    publicPosts,
+    weather
 };
