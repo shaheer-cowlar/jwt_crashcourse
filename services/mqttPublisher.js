@@ -1,4 +1,5 @@
 const mqtt = require('mqtt');
+const { weather } = require("../db");
 
 // MQTT broker details
 const brokerUrl = 'mqtt://localhost';
@@ -20,7 +21,9 @@ client.on('error', (error) => {
 
 // Publish a message every one second
 setInterval(() => {
-  const message = 'This is a published message';
+  const message = JSON.stringify(weather); // Convert weather data to a JSON string
+  console.log('Sending:', message);
+
   client.publish(topic, message);
   console.log('Published message:', message);
 }, 1000);
