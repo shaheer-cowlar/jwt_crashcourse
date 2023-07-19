@@ -12,48 +12,62 @@ router.get('/getall',(req,res)=>{
 })
 
 //login
-router.post('/login',async(req,res)=>{
-    const {password,email} = req.body;
-    let user = users.find((user)=>{
-        return user.email === email
-    });
-    if(!user){
-        return res.status(400).json({
-            "errors":[
-                {
-                    "msg":"Invalid Credentials"
-                }
-            ]
-        })
-    }
- 
- let isMatched= await   bcrypt.compare(password,user.password)
-  if(!isMatched){
-    return res.status(400).json({
-        "errors":[
-            {
-                "msg":"Invalid Credentials"
-            }
-        ]
-    })
-  }
+router.post('/login', async (req, res) => {
+  const { password, email } = req.body;
 
-  const token = await JWT.sign({
-         email
-     },
-        "fghjghjhgjhgjgjgjgjgjgjg",
-       {
-         expiresIn:9999999999
-       }
-    )  
+  // Find the user in MongoDB based on the email
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({
+        errors: [
+          {
+            msg: "Invalid Credentials"
+          }
+        ]
+      });
+    }
+
+    // Compare the provided password with the hashed password in the database
+    const isMatched = await bcrypt.compare(password, user.password);
+
+    if (!isMatched) {
+      return res.status(400).json({
+        errors: [
+          {
+            msg: "Invalid Credentials"
+          }
+        ]
+      });
+    }
+
+    // If the password is correct, generate a JWT token
+    const token = await JWT.sign(
+      {
+        email
+      },
+      "your-secret-key", // Replace this with your own secret key for JWT
+      {
+        expiresIn: "1h" // You can set the expiration time as needed
+      }
+    );
 
     res.json({
-           token
+      token
     });
- 
-    
+  } catch (err) {
+    console.error("Error during login:", err);
+    res.status(500).json({
+      errors: [
+        {
+          msg: "Server Error"
+        }
+      ]
+    });
+  }
+});
 
-})
 
 router.post('/signup',
 [
