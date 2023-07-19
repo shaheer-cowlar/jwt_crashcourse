@@ -6,7 +6,9 @@ require("./services/mqttPublisher")
 require("./services/mqttSubscriber")
 
 const weather = require("./routes/weather")
+const mongoose = require("mongoose")
 
+mongoose.connect("mongodb://localhost/testdb")
 
 const app = express()
 app.use(express.json())
