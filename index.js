@@ -7,14 +7,19 @@ require("./services/mqttSubscriber")
 
 const weather = require("./routes/weather")
 const mongoose = require("mongoose")
+const User = require("./user")
 
-mongoose.connect("mongodb://localhost/testdb")
+
+
+
 
 const app = express()
-app.use(express.json())
+app.use(express.json());
+
+mongoose.connect("mongodb://localhost/test")
+
+
 app.use("/auth",auth)
-app.use("/posts",post)
-app.use("/weather",weather)
 
 app.listen(5000,()=>{
     console.log('Now running on port 5000')
