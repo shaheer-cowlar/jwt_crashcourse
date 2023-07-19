@@ -17,7 +17,7 @@ client.on('connect', () => {
 
 // Handle incoming messages
 client.on('message', (receivedTopic, message) => {
-  console.log('Received message:', message.toString());
+ // console.log('Received message:', message.toString());
 });
 
 // Handle the error event

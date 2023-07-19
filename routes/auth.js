@@ -3,6 +3,8 @@ const { users } = require("../db")
 const { check,validationResult } = require("express-validator")
 const bcrypt = require("bcrypt")
 const JWT = require("jsonwebtoken")
+const mongoose = require("mongoose")
+const User = require("../user")
 
 //get all users
 router.get('/getall',(req,res)=>{
@@ -91,6 +93,20 @@ async (req, res) => {
   let hashedPassword = await bcrypt.hash(password,10)
   console.log(password, email);
   //storing into db
+
+
+      const user=await User.create({
+          name:"Kyle",
+          age:26,
+          email:email,
+          password:hashedPassword,
+          
+      })
+      
+      await user.save()
+  
+
+
   users.push({
     email,
     password:hashedPassword

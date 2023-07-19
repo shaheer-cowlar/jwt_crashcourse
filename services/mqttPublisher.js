@@ -11,7 +11,7 @@ const client = mqtt.connect(`${brokerUrl}:${brokerPort}`);
 
 // Handle the connection event
 client.on('connect', () => {
-  console.log('Connected to MQTT broker by publisher');
+  //console.log('Connected to MQTT broker by publisher');
 });
 
 // Handle the error event
@@ -22,8 +22,8 @@ client.on('error', (error) => {
 // Publish a message every one second
 setInterval(() => {
   const message = JSON.stringify(weather); // Convert weather data to a JSON string
-  console.log('Sending:', message);
+  //console.log('Sending:', message);
 
   client.publish(topic, message);
-  console.log('Published message:', message);
+  //console.log('Published message:', message);
 }, 1000);
