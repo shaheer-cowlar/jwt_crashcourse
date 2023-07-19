@@ -18,7 +18,7 @@ app.use(express.json());
 
 mongoose.connect("mongodb://localhost/test")
 
-
+app.use("/weather",weather)
 app.use("/auth",auth)
 
 app.listen(5000,()=>{

@@ -77,7 +77,7 @@ router.post('/signup',
   })
 ],
 async (req, res) => {
-  const { password, email } = req.body;
+  const { password, email, name } = req.body;
 
   const errors = validationResult(req);
    
@@ -110,7 +110,7 @@ async (req, res) => {
 
 
       const user=await User.create({
-          name:"Kyle",
+          name:name,
           age:26,
           email:email,
           password:hashedPassword,
