@@ -11,7 +11,7 @@ router.get('/all',(req,res)=>{
 });
 
 
-router.get('/khi',checkAuth,(req,res)=>{
+router.get('/khi',(req,res)=>{
    
     let weath = weather.find((weath)=>{
         return weath.city === "Karachi"
@@ -24,7 +24,7 @@ router.get('/khi',checkAuth,(req,res)=>{
    
 
 
-router.get('/isb',checkAuth,(req,res)=>{
+router.get('/isb',(req,res)=>{
    
         let weath = weather.find((weath)=>{
             return weath.city === "Islamabad"
@@ -37,7 +37,7 @@ router.get('/isb',checkAuth,(req,res)=>{
        
     
 
-router.get('/lhr',checkAuth,(req,res)=>{
+router.get('/lhr',(req,res)=>{
    
      let weath = weather.find((weath)=>{
         return weath.city === "Lahore"
