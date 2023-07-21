@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { weather } = require("../db");
 //const { privatePosts } = require("../db");
-const checkAuth = require("../routes/middleware/checkAuth")
+const checkAuth = require("./middleware/checkAuth")
 
 router.get('/all',(req,res)=>{
   res.json({
