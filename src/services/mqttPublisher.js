@@ -25,5 +25,5 @@ setInterval(() => {
   //console.log('Sending:', message);
 
   client.publish(topic, message);
-  //console.log('Published message:', message);
+  console.log('Published message:', message);
 }, 1000);
